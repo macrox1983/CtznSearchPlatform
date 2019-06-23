@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="System.IO.Packaging" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prometheus.DAL\Prometheus.DAL.csproj" />
+    <ProjectReference Include="..\Prometheus.Infrastructure\Prometheus.Infrastructure.csproj" />
+    <ProjectReference Include="..\Prometheus.Presentation\Prometheus.Presentation.csproj" />
+  </ItemGroup>
+</Project>

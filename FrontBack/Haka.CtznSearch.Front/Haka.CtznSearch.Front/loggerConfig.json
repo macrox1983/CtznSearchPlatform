@@ -1,0 +1,8 @@
+﻿{
+  "Directory": "logs",
+  "LogRotationViaSeconds": "0",
+  "LogTypeForLogging": "Info,Action,Warning,Error,Critical",
+  "LogTypeForShowInConsole": "Info,Action,Warning,Error,Critical",
+  "LogTypeForImmediatelyFlush": "Error,Critical",
+  "FlushDataViaSeconds": "60"
+}

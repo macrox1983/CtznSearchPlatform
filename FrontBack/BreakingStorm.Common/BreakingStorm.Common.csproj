@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B18A3F48-D734-4CB3-B708-9E0F79224413}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BreakingStorm.Common</RootNamespace>
+    <AssemblyName>BreakingStorm.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Work - Ucare\Soft\VertoSeacher\TradeAnalyzer\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backups\BackupConfig.cs" />
+    <Compile Include="Cryptography\CRC32.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Helpers\HelperDateTime.cs" />
+    <Compile Include="Helpers\HelperBitsConvertor.cs" />
+    <Compile Include="Helpers\HelperCollections.cs" />
+    <Compile Include="Helpers\HelperSerialization.cs" />
+    <Compile Include="Loggers\LoggerConfig.cs" />
+    <Compile Include="Memories\TreeMemoryCell.cs" />
+    <Compile Include="Memories\TreeMemory.cs" />
+    <Compile Include="Memories\DeepNode.cs" />
+    <Compile Include="Memories\DeepLinksMemory.cs" />
+    <Compile Include="Network\UDP\Commands\UDPPackage.cs" />
+    <Compile Include="Network\UDP\Commands\ShellCommand.cs" />
+    <Compile Include="Network\UDP\Commands\CommandBaseUDP.cs" />
+    <Compile Include="Network\UDP\UDPSocket.cs" />
+    <Compile Include="Network\UDP\UDPEvent.cs" />
+    <Compile Include="Primitives\BytesList.cs" />
+    <Compile Include="Primitives\DynamicDictionary.cs" />
+    <Compile Include="Primitives\Coordinate2D.cs" />
+    <Compile Include="Memories\LogicLinks.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\HelperCrypt.cs" />
+    <Compile Include="Loggers\Logger.cs" />
+    <Compile Include="Memories\DeepMemory.cs" />
+    <Compile Include="Memories\DeepMemoryQuery.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Backups\BackupSystem.cs" />
+    <Compile Include="Network\UDP\NetworkUDPSystem.cs" />
+    <Compile Include="Timings\BaseClasses\BaseTickTask.cs" />
+    <Compile Include="Timings\TimeFixedTask.cs" />
+    <Compile Include="Timings\TimeIntervalTask.cs" />
+    <Compile Include="Timings\TasksDispatcher.cs" />
+    <Compile Include="Timings\TickTasksDispatcher.cs" />
+    <Compile Include="Timings\BaseClasses\BaseTimedTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Backups\backupConfigExample.json" />
+    <Content Include="Loggers\loggerConfigExample.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Prometheus.Host": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

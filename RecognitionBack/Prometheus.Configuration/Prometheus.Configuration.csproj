@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prometheus.Infrastructure.Configuration\Prometheus.Infrastructure.Configuration.csproj" />
+    <ProjectReference Include="..\Prometheus.Infrastructure.Migration\Prometheus.Infrastructure.Migration.csproj" />
+    <ProjectReference Include="..\Prometheus.Infrastructure\Prometheus.Infrastructure.csproj" />
+    <ProjectReference Include="..\Prometheus.MigrationAssembly\Prometheus.MigrationAssembly.csproj" />
+  </ItemGroup>
+
+</Project>

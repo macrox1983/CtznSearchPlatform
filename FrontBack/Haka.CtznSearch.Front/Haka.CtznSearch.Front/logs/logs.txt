@@ -1,0 +1,219 @@
+﻿[5/21/2019 6:13:31 PM]<Action> Core loaded!
+[5/21/2019 6:13:34 PM]<Action> LoadMarketData 0 BTCUSDT-Hours_1
+[5/21/2019 6:13:34 PM]<Action> UpdateMarketData start BTCUSDT, Hours_1
+[5/21/2019 6:13:36 PM]<Action> UpdateMarketData end BTCUSDT, Hours_1 fullcount=349
+[5/21/2019 6:13:36 PM]<Action> SearchDropAction start BTCUSDT, Hours_1
+[5/21/2019 6:13:36 PM]<Action> SearchDropAction end BTCUSDT, Hours_1 found=1
+[5/21/2019 6:13:36 PM]<Action> SearchMiddleAction start BTCUSDT, Hours_1
+[5/21/2019 6:13:36 PM]<Action> SearchMiddleAction end BTCUSDT, Hours_1 found=2
+[5/21/2019 6:13:36 PM]<Action> SearchRaiseAction start BTCUSDT, Hours_1
+[5/21/2019 6:13:36 PM]<Action> SearchRaiseAction end BTCUSDT, Hours_1 found=8
+[5/21/2019 6:13:36 PM]<Action> SearchIdealWindmills start BTCUSDT, Hours_1
+[5/21/2019 6:13:36 PM]<Action> SearchIdealWindmills end BTCUSDT, Hours_1 found=1
+[5/21/2019 6:24:48 PM]<Action> FilterCalculateScore end BTCUSDT
+[5/21/2019 6:24:48 PM]<Action> LoadMarketData 0 ETHUSDT-Hours_1
+[5/21/2019 6:24:48 PM]<Action> UpdateMarketData start ETHUSDT, Hours_1
+[5/21/2019 6:24:50 PM]<Action> UpdateMarketData end ETHUSDT, Hours_1 fullcount=349
+[5/21/2019 6:24:50 PM]<Action> SearchDropAction start ETHUSDT, Hours_1
+[5/21/2019 6:24:50 PM]<Action> SearchDropAction end ETHUSDT, Hours_1 found=1
+[5/21/2019 6:24:50 PM]<Action> SearchMiddleAction start ETHUSDT, Hours_1
+[5/21/2019 6:24:50 PM]<Action> SearchMiddleAction end ETHUSDT, Hours_1 found=3
+[5/21/2019 6:24:50 PM]<Action> SearchRaiseAction start ETHUSDT, Hours_1
+[5/21/2019 6:24:50 PM]<Action> SearchRaiseAction end ETHUSDT, Hours_1 found=7
+[5/21/2019 6:24:50 PM]<Action> SearchIdealWindmills start ETHUSDT, Hours_1
+[5/21/2019 6:24:50 PM]<Action> SearchIdealWindmills end ETHUSDT, Hours_1 found=1
+[5/21/2019 6:24:50 PM]<Action> FilterCalculateScore end ETHUSDT
+[5/21/2019 6:24:50 PM]<Action> LoadMarketData 0 BNBUSDT-Hours_1
+[5/21/2019 6:24:50 PM]<Action> UpdateMarketData start BNBUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> UpdateMarketData end BNBUSDT, Hours_1 fullcount=349
+[5/21/2019 6:24:51 PM]<Action> SearchDropAction start BNBUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchDropAction end BNBUSDT, Hours_1 found=0
+[5/21/2019 6:24:51 PM]<Action> SearchMiddleAction start BNBUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchMiddleAction end BNBUSDT, Hours_1 found=2
+[5/21/2019 6:24:51 PM]<Action> SearchRaiseAction start BNBUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchRaiseAction end BNBUSDT, Hours_1 found=5
+[5/21/2019 6:24:51 PM]<Action> SearchIdealWindmills start BNBUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchIdealWindmills end BNBUSDT, Hours_1 found=1
+[5/21/2019 6:24:51 PM]<Action> FilterCalculateScore end BNBUSDT
+[5/21/2019 6:24:51 PM]<Action> LoadMarketData 0 BCCUSDT-Hours_1
+[5/21/2019 6:24:51 PM]<Action> UpdateMarketData start BCCUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> UpdateMarketData end BCCUSDT, Hours_1 fullcount=0
+[5/21/2019 6:24:51 PM]<Action> SearchDropAction start BCCUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchDropAction end BCCUSDT, Hours_1 found=0
+[5/21/2019 6:24:51 PM]<Action> SearchMiddleAction start BCCUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchMiddleAction end BCCUSDT, Hours_1 found=0
+[5/21/2019 6:24:51 PM]<Action> SearchRaiseAction start BCCUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchRaiseAction end BCCUSDT, Hours_1 found=0
+[5/21/2019 6:24:51 PM]<Action> SearchIdealWindmills start BCCUSDT, Hours_1
+[5/21/2019 6:24:51 PM]<Action> SearchIdealWindmills end BCCUSDT, Hours_1 found=0
+[5/21/2019 6:24:51 PM]<Action> FilterCalculateScore end BCCUSDT
+[5/21/2019 6:24:51 PM]<Action> LoadMarketData 0 NEOUSDT-Hours_1
+[5/21/2019 6:24:51 PM]<Action> UpdateMarketData start NEOUSDT, Hours_1
+[5/21/2019 6:24:53 PM]<Action> UpdateMarketData end NEOUSDT, Hours_1 fullcount=349
+[5/21/2019 6:24:53 PM]<Action> SearchDropAction start NEOUSDT, Hours_1
+[5/21/2019 6:24:53 PM]<Action> SearchDropAction end NEOUSDT, Hours_1 found=0
+[5/21/2019 6:24:53 PM]<Action> SearchMiddleAction start NEOUSDT, Hours_1
+[5/21/2019 6:24:53 PM]<Action> SearchMiddleAction end NEOUSDT, Hours_1 found=2
+[5/21/2019 6:24:53 PM]<Action> SearchRaiseAction start NEOUSDT, Hours_1
+[5/21/2019 6:24:53 PM]<Action> SearchRaiseAction end NEOUSDT, Hours_1 found=4
+[5/21/2019 6:24:53 PM]<Action> SearchIdealWindmills start NEOUSDT, Hours_1
+[5/21/2019 6:24:53 PM]<Action> SearchIdealWindmills end NEOUSDT, Hours_1 found=1
+[5/21/2019 6:24:53 PM]<Action> FilterCalculateScore end NEOUSDT
+[5/21/2019 6:24:53 PM]<Action> LoadMarketData 0 LTCUSDT-Hours_1
+[5/21/2019 6:24:53 PM]<Action> UpdateMarketData start LTCUSDT, Hours_1
+[5/21/2019 6:24:54 PM]<Action> UpdateMarketData end LTCUSDT, Hours_1 fullcount=349
+[5/21/2019 6:24:54 PM]<Action> SearchDropAction start LTCUSDT, Hours_1
+[5/21/2019 6:24:54 PM]<Action> SearchDropAction end LTCUSDT, Hours_1 found=0
+[5/21/2019 6:24:54 PM]<Action> SearchMiddleAction start LTCUSDT, Hours_1
+[5/21/2019 6:24:54 PM]<Action> SearchMiddleAction end LTCUSDT, Hours_1 found=2
+[5/21/2019 6:24:54 PM]<Action> SearchRaiseAction start LTCUSDT, Hours_1
+[5/21/2019 6:24:54 PM]<Action> SearchRaiseAction end LTCUSDT, Hours_1 found=5
+[5/21/2019 6:24:54 PM]<Action> SearchIdealWindmills start LTCUSDT, Hours_1
+[5/21/2019 6:24:54 PM]<Action> SearchIdealWindmills end LTCUSDT, Hours_1 found=3
+[5/21/2019 6:25:04 PM]<Action> FilterCalculateScore end LTCUSDT
+[5/21/2019 6:25:04 PM]<Action> LoadMarketData 0 QTUMUSDT-Hours_1
+[5/21/2019 6:25:04 PM]<Action> UpdateMarketData start QTUMUSDT, Hours_1
+[5/21/2019 6:25:05 PM]<Action> UpdateMarketData end QTUMUSDT, Hours_1 fullcount=349
+[5/21/2019 6:25:05 PM]<Action> SearchDropAction start QTUMUSDT, Hours_1
+[5/21/2019 6:25:05 PM]<Action> SearchDropAction end QTUMUSDT, Hours_1 found=0
+[5/21/2019 6:25:05 PM]<Action> SearchMiddleAction start QTUMUSDT, Hours_1
+[5/21/2019 6:25:05 PM]<Action> SearchMiddleAction end QTUMUSDT, Hours_1 found=2
+[5/21/2019 6:25:05 PM]<Action> SearchRaiseAction start QTUMUSDT, Hours_1
+[5/21/2019 6:25:05 PM]<Action> SearchRaiseAction end QTUMUSDT, Hours_1 found=5
+[5/21/2019 6:25:05 PM]<Action> SearchIdealWindmills start QTUMUSDT, Hours_1
+[5/21/2019 6:25:05 PM]<Action> SearchIdealWindmills end QTUMUSDT, Hours_1 found=0
+[5/21/2019 6:25:58 PM]<Action> FilterCalculateScore end QTUMUSDT
+[5/21/2019 6:25:58 PM]<Action> LoadMarketData 0 ADAUSDT-Hours_1
+[5/21/2019 6:25:58 PM]<Action> UpdateMarketData start ADAUSDT, Hours_1
+[5/21/2019 6:25:59 PM]<Action> UpdateMarketData end ADAUSDT, Hours_1 fullcount=349
+[5/21/2019 6:25:59 PM]<Action> SearchDropAction start ADAUSDT, Hours_1
+[5/21/2019 6:25:59 PM]<Action> SearchDropAction end ADAUSDT, Hours_1 found=0
+[5/21/2019 6:25:59 PM]<Action> SearchMiddleAction start ADAUSDT, Hours_1
+[5/21/2019 6:25:59 PM]<Action> SearchMiddleAction end ADAUSDT, Hours_1 found=1
+[5/21/2019 6:25:59 PM]<Action> SearchRaiseAction start ADAUSDT, Hours_1
+[5/21/2019 6:25:59 PM]<Action> SearchRaiseAction end ADAUSDT, Hours_1 found=2
+[5/21/2019 6:25:59 PM]<Action> SearchIdealWindmills start ADAUSDT, Hours_1
+[5/21/2019 6:25:59 PM]<Action> SearchIdealWindmills end ADAUSDT, Hours_1 found=1
+[5/21/2019 6:26:02 PM]<Action> FilterCalculateScore end ADAUSDT
+[5/21/2019 6:26:02 PM]<Action> LoadMarketData 0 XRPUSDT-Hours_1
+[5/21/2019 6:26:02 PM]<Action> UpdateMarketData start XRPUSDT, Hours_1
+[5/21/2019 6:26:02 PM]<Action> UpdateMarketData end XRPUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:02 PM]<Action> SearchDropAction start XRPUSDT, Hours_1
+[5/21/2019 6:26:02 PM]<Action> SearchDropAction end XRPUSDT, Hours_1 found=0
+[5/21/2019 6:26:02 PM]<Action> SearchMiddleAction start XRPUSDT, Hours_1
+[5/21/2019 6:26:02 PM]<Action> SearchMiddleAction end XRPUSDT, Hours_1 found=5
+[5/21/2019 6:26:02 PM]<Action> SearchRaiseAction start XRPUSDT, Hours_1
+[5/21/2019 6:26:02 PM]<Action> SearchRaiseAction end XRPUSDT, Hours_1 found=2
+[5/21/2019 6:26:02 PM]<Action> SearchIdealWindmills start XRPUSDT, Hours_1
+[5/21/2019 6:26:02 PM]<Action> SearchIdealWindmills end XRPUSDT, Hours_1 found=1
+[5/21/2019 6:26:04 PM]<Action> FilterCalculateScore end XRPUSDT
+[5/21/2019 6:26:04 PM]<Action> LoadMarketData 0 EOSUSDT-Hours_1
+[5/21/2019 6:26:04 PM]<Action> UpdateMarketData start EOSUSDT, Hours_1
+[5/21/2019 6:26:07 PM]<Action> UpdateMarketData end EOSUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:07 PM]<Action> SearchDropAction start EOSUSDT, Hours_1
+[5/21/2019 6:26:07 PM]<Action> SearchDropAction end EOSUSDT, Hours_1 found=1
+[5/21/2019 6:26:07 PM]<Action> SearchMiddleAction start EOSUSDT, Hours_1
+[5/21/2019 6:26:07 PM]<Action> SearchMiddleAction end EOSUSDT, Hours_1 found=3
+[5/21/2019 6:26:07 PM]<Action> SearchRaiseAction start EOSUSDT, Hours_1
+[5/21/2019 6:26:07 PM]<Action> SearchRaiseAction end EOSUSDT, Hours_1 found=3
+[5/21/2019 6:26:07 PM]<Action> SearchIdealWindmills start EOSUSDT, Hours_1
+[5/21/2019 6:26:07 PM]<Action> SearchIdealWindmills end EOSUSDT, Hours_1 found=0
+[5/21/2019 6:26:10 PM]<Action> FilterCalculateScore end EOSUSDT
+[5/21/2019 6:26:10 PM]<Action> LoadMarketData 0 IOTAUSDT-Hours_1
+[5/21/2019 6:26:10 PM]<Action> UpdateMarketData start IOTAUSDT, Hours_1
+[5/21/2019 6:26:12 PM]<Action> UpdateMarketData end IOTAUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:12 PM]<Action> SearchDropAction start IOTAUSDT, Hours_1
+[5/21/2019 6:26:12 PM]<Action> SearchDropAction end IOTAUSDT, Hours_1 found=0
+[5/21/2019 6:26:12 PM]<Action> SearchMiddleAction start IOTAUSDT, Hours_1
+[5/21/2019 6:26:12 PM]<Action> SearchMiddleAction end IOTAUSDT, Hours_1 found=4
+[5/21/2019 6:26:12 PM]<Action> SearchRaiseAction start IOTAUSDT, Hours_1
+[5/21/2019 6:26:12 PM]<Action> SearchRaiseAction end IOTAUSDT, Hours_1 found=5
+[5/21/2019 6:26:12 PM]<Action> SearchIdealWindmills start IOTAUSDT, Hours_1
+[5/21/2019 6:26:12 PM]<Action> SearchIdealWindmills end IOTAUSDT, Hours_1 found=1
+[5/21/2019 6:26:14 PM]<Action> FilterCalculateScore end IOTAUSDT
+[5/21/2019 6:26:14 PM]<Action> LoadMarketData 0 XLMUSDT-Hours_1
+[5/21/2019 6:26:14 PM]<Action> UpdateMarketData start XLMUSDT, Hours_1
+[5/21/2019 6:26:17 PM]<Action> UpdateMarketData end XLMUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:17 PM]<Action> SearchDropAction start XLMUSDT, Hours_1
+[5/21/2019 6:26:17 PM]<Action> SearchDropAction end XLMUSDT, Hours_1 found=1
+[5/21/2019 6:26:17 PM]<Action> SearchMiddleAction start XLMUSDT, Hours_1
+[5/21/2019 6:26:17 PM]<Action> SearchMiddleAction end XLMUSDT, Hours_1 found=4
+[5/21/2019 6:26:17 PM]<Action> SearchRaiseAction start XLMUSDT, Hours_1
+[5/21/2019 6:26:17 PM]<Action> SearchRaiseAction end XLMUSDT, Hours_1 found=5
+[5/21/2019 6:26:17 PM]<Action> SearchIdealWindmills start XLMUSDT, Hours_1
+[5/21/2019 6:26:17 PM]<Action> SearchIdealWindmills end XLMUSDT, Hours_1 found=2
+[5/21/2019 6:26:20 PM]<Action> FilterCalculateScore end XLMUSDT
+[5/21/2019 6:26:20 PM]<Action> LoadMarketData 0 ONTUSDT-Hours_1
+[5/21/2019 6:26:20 PM]<Action> UpdateMarketData start ONTUSDT, Hours_1
+[5/21/2019 6:26:21 PM]<Action> UpdateMarketData end ONTUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:21 PM]<Action> SearchDropAction start ONTUSDT, Hours_1
+[5/21/2019 6:26:21 PM]<Action> SearchDropAction end ONTUSDT, Hours_1 found=1
+[5/21/2019 6:26:21 PM]<Action> SearchMiddleAction start ONTUSDT, Hours_1
+[5/21/2019 6:26:21 PM]<Action> SearchMiddleAction end ONTUSDT, Hours_1 found=4
+[5/21/2019 6:26:21 PM]<Action> SearchRaiseAction start ONTUSDT, Hours_1
+[5/21/2019 6:26:21 PM]<Action> SearchRaiseAction end ONTUSDT, Hours_1 found=4
+[5/21/2019 6:26:21 PM]<Action> SearchIdealWindmills start ONTUSDT, Hours_1
+[5/21/2019 6:26:21 PM]<Action> SearchIdealWindmills end ONTUSDT, Hours_1 found=0
+[5/21/2019 6:26:23 PM]<Action> FilterCalculateScore end ONTUSDT
+[5/21/2019 6:26:23 PM]<Action> LoadMarketData 0 TRXUSDT-Hours_1
+[5/21/2019 6:26:23 PM]<Action> UpdateMarketData start TRXUSDT, Hours_1
+[5/21/2019 6:26:26 PM]<Action> UpdateMarketData end TRXUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:26 PM]<Action> SearchDropAction start TRXUSDT, Hours_1
+[5/21/2019 6:26:26 PM]<Action> SearchDropAction end TRXUSDT, Hours_1 found=0
+[5/21/2019 6:26:26 PM]<Action> SearchMiddleAction start TRXUSDT, Hours_1
+[5/21/2019 6:26:26 PM]<Action> SearchMiddleAction end TRXUSDT, Hours_1 found=1
+[5/21/2019 6:26:26 PM]<Action> SearchRaiseAction start TRXUSDT, Hours_1
+[5/21/2019 6:26:26 PM]<Action> SearchRaiseAction end TRXUSDT, Hours_1 found=8
+[5/21/2019 6:26:26 PM]<Action> SearchIdealWindmills start TRXUSDT, Hours_1
+[5/21/2019 6:26:26 PM]<Action> SearchIdealWindmills end TRXUSDT, Hours_1 found=1
+[5/21/2019 6:26:27 PM]<Action> FilterCalculateScore end TRXUSDT
+[5/21/2019 6:26:27 PM]<Action> LoadMarketData 0 ETCUSDT-Hours_1
+[5/21/2019 6:26:27 PM]<Action> UpdateMarketData start ETCUSDT, Hours_1
+[5/21/2019 6:26:29 PM]<Action> UpdateMarketData end ETCUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:29 PM]<Action> SearchDropAction start ETCUSDT, Hours_1
+[5/21/2019 6:26:29 PM]<Action> SearchDropAction end ETCUSDT, Hours_1 found=0
+[5/21/2019 6:26:29 PM]<Action> SearchMiddleAction start ETCUSDT, Hours_1
+[5/21/2019 6:26:29 PM]<Action> SearchMiddleAction end ETCUSDT, Hours_1 found=4
+[5/21/2019 6:26:29 PM]<Action> SearchRaiseAction start ETCUSDT, Hours_1
+[5/21/2019 6:26:29 PM]<Action> SearchRaiseAction end ETCUSDT, Hours_1 found=6
+[5/21/2019 6:26:29 PM]<Action> SearchIdealWindmills start ETCUSDT, Hours_1
+[5/21/2019 6:26:29 PM]<Action> SearchIdealWindmills end ETCUSDT, Hours_1 found=1
+[5/21/2019 6:26:31 PM]<Action> FilterCalculateScore end ETCUSDT
+[5/21/2019 6:26:31 PM]<Action> LoadMarketData 0 ICXUSDT-Hours_1
+[5/21/2019 6:26:31 PM]<Action> UpdateMarketData start ICXUSDT, Hours_1
+[5/21/2019 6:26:33 PM]<Action> UpdateMarketData end ICXUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:33 PM]<Action> SearchDropAction start ICXUSDT, Hours_1
+[5/21/2019 6:26:33 PM]<Action> SearchDropAction end ICXUSDT, Hours_1 found=0
+[5/21/2019 6:26:33 PM]<Action> SearchMiddleAction start ICXUSDT, Hours_1
+[5/21/2019 6:26:33 PM]<Action> SearchMiddleAction end ICXUSDT, Hours_1 found=0
+[5/21/2019 6:26:33 PM]<Action> SearchRaiseAction start ICXUSDT, Hours_1
+[5/21/2019 6:26:33 PM]<Action> SearchRaiseAction end ICXUSDT, Hours_1 found=3
+[5/21/2019 6:26:33 PM]<Action> SearchIdealWindmills start ICXUSDT, Hours_1
+[5/21/2019 6:26:33 PM]<Action> SearchIdealWindmills end ICXUSDT, Hours_1 found=1
+[5/21/2019 6:26:34 PM]<Action> FilterCalculateScore end ICXUSDT
+[5/21/2019 6:26:34 PM]<Action> LoadMarketData 0 VENUSDT-Hours_1
+[5/21/2019 6:26:34 PM]<Action> UpdateMarketData start VENUSDT, Hours_1
+[5/21/2019 6:26:35 PM]<Action> UpdateMarketData end VENUSDT, Hours_1 fullcount=0
+[5/21/2019 6:26:35 PM]<Action> SearchDropAction start VENUSDT, Hours_1
+[5/21/2019 6:26:35 PM]<Action> SearchDropAction end VENUSDT, Hours_1 found=0
+[5/21/2019 6:26:35 PM]<Action> SearchMiddleAction start VENUSDT, Hours_1
+[5/21/2019 6:26:35 PM]<Action> SearchMiddleAction end VENUSDT, Hours_1 found=0
+[5/21/2019 6:26:35 PM]<Action> SearchRaiseAction start VENUSDT, Hours_1
+[5/21/2019 6:26:35 PM]<Action> SearchRaiseAction end VENUSDT, Hours_1 found=0
+[5/21/2019 6:26:35 PM]<Action> SearchIdealWindmills start VENUSDT, Hours_1
+[5/21/2019 6:26:35 PM]<Action> SearchIdealWindmills end VENUSDT, Hours_1 found=0
+[5/21/2019 6:26:38 PM]<Action> FilterCalculateScore end VENUSDT
+[5/21/2019 6:26:38 PM]<Action> LoadMarketData 0 NULSUSDT-Hours_1
+[5/21/2019 6:26:38 PM]<Action> UpdateMarketData start NULSUSDT, Hours_1
+[5/21/2019 6:26:40 PM]<Action> UpdateMarketData end NULSUSDT, Hours_1 fullcount=349
+[5/21/2019 6:26:40 PM]<Action> SearchDropAction start NULSUSDT, Hours_1
+[5/21/2019 6:26:40 PM]<Action> SearchDropAction end NULSUSDT, Hours_1 found=2
+[5/21/2019 6:26:40 PM]<Action> SearchMiddleAction start NULSUSDT, Hours_1
+[5/21/2019 6:26:40 PM]<Action> SearchMiddleAction end NULSUSDT, Hours_1 found=1
+[5/21/2019 6:26:40 PM]<Action> SearchRaiseAction start NULSUSDT, Hours_1
+[5/21/2019 6:26:40 PM]<Action> SearchRaiseAction end NULSUSDT, Hours_1 found=3
+[5/21/2019 6:26:40 PM]<Action> SearchIdealWindmills start NULSUSDT, Hours_1
+[5/21/2019 6:26:40 PM]<Action> SearchIdealWindmills end NULSUSDT, Hours_1 found=1
+[5/21/2019 6:26:42 PM]<Action> FilterCalculateScore end NULSUSDT
+[5/21/2019 6:26:42 PM]<Action> LoadMarketData 0 VETUSDT-Hours_1
+[5/21/2019 6:26:42 PM]<Action> UpdateMa

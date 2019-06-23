@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="ru" />
+    <meta name="description" content="@ViewData["MetaDescription"] " />
+    <meta name="keywords" content="@ViewData["MetaKeyWords"] " />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] </title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />    
+    <link rel="stylesheet" type="text/css" href="/css/css.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script type="text/javascript" src="/js/gs1_01.js"></script>
+    <script type="text/javascript" src="/js/jsQR.js"></script>
+    @RenderSection("AddInHead", required: false)
+</head>
+<body>
+    <div id="mainPopupBlock" class="hide">
+        <div id="mainPopupContent">
+            <p id="mainPopupText"></p>
+            <p class="center"><input class="width50" id="mainPopupInput" /></p>
+            <p class="center"><span class="btn btnBlack width50" onclick="gs.closePopup();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+        </div>
+    </div>
+
+    <div id="codeReader" class="hide win">
+        <p class="center">Наведите камеру на QR-код</p>
+        <p class="center">
+            <canvas id="codeReaderCanvas" style="width:50%; height:auto;"></canvas>
+        </p>
+        <p id="codeReaderStatusMessage"></p>
+        <div class="btn" onclick="gs.CodeReader.hide();">Назад</div>
+    </div>
+    @RenderBody()
+    <footer>
+        <p id="footer_copy"><a href="/" class="linkGrey">CtznSearch © 2019</a></p>
+    </footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

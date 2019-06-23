@@ -1,0 +1,45 @@
+﻿@using Prometheus.Host.ViewModels
+@model List<ComponentVm>
+@{
+    ViewData["Title"] = "Компоненты";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Компоненты</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя компонента
+            </th>
+            <th>
+                Состояние
+            </th>
+            <th>
+                Описание
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComponentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComponentState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComponentDescription)
+            </td>
+            <td>
+                @Html.ActionLink("GenerateKey", "GenerateComponentKey", new { componentName = item.ComponentName }) |
+                @Html.ActionLink("Pause", "PauseComponent", new { componentName = item.ComponentName }) |
+                @Html.ActionLink("Stop", "StopComponent", new { componentName = item.ComponentName }) |
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

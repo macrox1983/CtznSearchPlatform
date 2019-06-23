@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Регистрация";
+    ViewData["MetaDescription"] = "";
+    ViewData["MetaKeyWords"] = "";
+}
+@model List<Ticket>;
+
+@section AddInHead
+    {
+
+}
+@section Scripts
+    {
+    <script>
+        var app = {};
+
+        document.addEventListener('DOMContentLoaded', function ()
+        {
+
+        });
+
+        function create_ticket()
+        {
+            gs.redirect("/AddTicket");            
+        }
+
+
+    </script>
+}
+    <main>
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <h1>Активные поиски</h1>            
+            @foreach (var item in Model)
+            {
+                <div class="ticketItem" onclick="gs.redirect('/i/@item.Id');">
+                    <div class="imageContainer f_left" style="width:15%">
+                    <img id="fotoHold" src="/images/missings/@(item.Id).jpg" style="width:100px; margin-top:1em;">
+                    </div>
+                    <p class="f_right" style="width:80%;"> 
+                        Имя: @item.Name<br />
+                        Возвраст: @item.Ages<br />
+                        Информация: @item.Description<br />
+                        Потерялся: @item.Last.ToString()<br />
+                    </p>
+                </div>
+                <br/>
+            }
+            <div id="submitBtn" class="btn btnBlue" onclick="create_ticket();">Создать свой поиск</div>
+        </div>        
+        <p id="errorText" class="errorText hide">Нет связи с сервером</p>
+        <br>
+    </main>

@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Создание заявки на поиск";
+    ViewData["MetaDescription"] = "";
+    ViewData["MetaKeyWords"] = "";
+}
+
+@section AddInHead
+    {
+    <link rel="stylesheet" href="/libs/ol/ol.css" type="text/css" />
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="/libs/ol/ol.js"></script>
+    <script src="/js/me_01.js"></script>
+    <script src="/js/meLib_01.js"></script>
+    <script src="/js/osm_01.js"></script>
+}
+@section Scripts
+    {
+    <script>
+        var app = {};
+
+        document.addEventListener('DOMContentLoaded', function ()
+        {
+            app.init = gs.getInitData();
+            app.groupId = 1;
+
+
+            app.mapEditor = new me.MapEditor('map');
+            app.mapEditor.fill({ nodes: [], ways: [] });
+            app.mapEditor.addEventListener(me.EventYouAreHereChanged, handlerChangePosition);
+            app.mapEditor.setMode(me.Mode_SetPoint);
+            app.mapEditor.setZoom(8);
+            app.mapEditor.setCenter([39.010647, 45.004664]);
+            app.mapEditor.setYouAreHere([39.010647, 45.004664]);
+                        
+            let dropZone = gs.getById('dropImage');
+            gs.dropZoneInit(document, function () { dropZone.style.opacity = 1; }, function () { dropZone.style.opacity = 0.2; }, function (e) { handlerGetFiles(e.dataTransfer.files) });
+
+        });
+
+        function handlerChangePosition(evt)
+        {
+            app.coord = evt.detail;          
+        }
+
+        let fotoToEdit = [];
+        function handlerGetFiles(files)
+        {
+            fotoToEdit = [];
+            ([...files]).forEach(file => { if (file.type != 'image/jpeg') return; fotoToEdit.push(file); });
+            editorNextFoto();
+        }
+
+        let file;
+        let fotoBlob = null;
+        function editorNextFoto()
+        {
+            if (fotoToEdit.length == 0) { return; }
+            file = fotoToEdit.shift();
+            let reader = new FileReader();
+            let fotoHold = gs.getById('fotoHold');
+            gs.hide('dropImage');
+            fotoBlob = file;
+            reader.addEventListener("load", function () { fotoHold.src = reader.result; fotoHold.show(); });
+            reader.readAsDataURL(file);
+
+                    }
+
+        function ajax_sendBlob()
+        {
+            let data = new FormData();
+            let args = gs.getDataObj();
+            
+            if (!args.Name) { gs.errorText('Укажите имя!'); return; }
+            if (!args.Ages) { gs.errorText('Укажите возраст!'); return; }
+            if (!args.Description) { gs.errorText('Добавьте описание!'); return; }
+            if (!args.LastTime) { gs.errorText('Укажите дату потери!'); return; }
+            if (!file) { gs.errorText('Добавьте фото!'); return; }
+            if (!app.coord) { gs.errorText('Укажите место потери!'); return; }            
+
+            data.append('file', file, 'file.jpg');
+            data.append('name', args.Name);
+            data.append('ages', args.Ages);
+            data.append('descr', args.Description);
+            data.append('lastTime', args.LastTime);
+            data.append('lon', app.coord[0]);
+            data.append('lat', app.coord[1]);            
+
+            gs.getById('btnCreate').disable();
+
+            gs.Net.postFiles('/ajaxapi/AddTicket', data, function (result)
+            {
+
+                gs.getById('btnCreate').enable();
+             
+                switch (result.error) {
+                    case 0:
+                        gs.redirect("/i/"+result.object);
+                        return;                    
+                    default: gs.errorText(gs.Net.getErrorByCode(result) + '<br/>'); break;
+                }                                
+            });
+        }
+
+    </script>
+}
+}
+<main>
+
+    <div class="container">
+        <div class="addTicket-contentBox">
+            <h1>Создание заявки на поиск</h1>
+            <div class="dataBlock" data-name="Name">
+                <p class="dataLabel">ФИО</p>
+                <p class="data" contenteditable="true" defText="Например: Иванов Иван Иванович">Например: Иванов Иван Иванович</p>
+            </div>
+            <div class="dataBlock" data-name="Ages">
+                <p class="dataLabel">Возраст (полных лет)</p>
+                <p class="data" contenteditable="true" defText="Введите цифрой">Введите цифрой</p>
+            </div>
+            <div class="dataBlock" data-name="Description">
+                <p class="dataLabel">Особые приметы <br /><i style="font-size:0.8em;">(Рост, вес, цвет глаз, цвет волос, в какую одежду был одет и т.д)</i></p>
+                <p class="data" contenteditable="true" defText="Введите значение">Введите значение</p>
+            </div>
+            <div class="dataBlock" data-name="LastTime">
+                <p class="dataLabel">Время потери</p>
+                <p class="data" contenteditable="true" defText="Пример: 2019-06-12 12:10:21">@DateTime.Now.ToString()</p>
+            </div>
+        </div>
+        <div class="addTicket-dropBox">
+            <img id="dropImage" src="/images/portrait.svg" style="width:100px; margin-left:44%; opacity:0.2;">
+            <img id="fotoHold" class="hide" src="" style="width:auto; max-height:100px; margin-left:44%;">
+            <p class="center" style="color:#acabcd;">Загрузите или перетащите фото пропавшего</p>
+            <input type="file" name="imgFile" id="imgFile" class="hide" multiple accept="image/jpeg" onchange="handlerGetFiles(this.files)" />            
+            <div class="btn btnOrange" style="width:50%; margin-left:25%;" onclick="gs.getById('imgFile').click();">Загрузить</div>
+        </div>
+        <div id="map" class="mapBlock" style="height:300px;"></div>
+        <p id="errorText" class="errorText"></p>
+        <br>
+        <div id="btnCreate" class="btn btnBlue" onclick="ajax_sendBlob()">Отправить</div>
+    </div>
+</main>

@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Регистрация";
+    ViewData["MetaDescription"] = "";
+    ViewData["MetaKeyWords"] = "";
+}
+
+@section AddInHead
+    {
+
+}
+@section Scripts
+    {
+    <script>
+        var app = {};
+
+        document.addEventListener('DOMContentLoaded', function ()
+        {
+            
+        });
+
+        function ajax_registration()
+        {
+            var btnSubmit = gs.getById('submitBtn');
+            let data = gs.getDataObj();            
+            if (!data.Name) { gs.errorText('Укажите имя!'); return; }
+            if (!data.Phone) { gs.errorText('Укажите телефон!'); return; }
+            
+
+            btnSubmit.disable();
+            gs.Net.post('/ajaxapi/Registration', data, function (result)
+            {
+                btnSubmit.enable();
+                switch (result.error) {
+                    case 0:
+                        gs.redirect("/TicketsList/");
+                        break;               
+                    default: gs.errorText(gs.Net.getErrorByCode(result) + '<br/>'); break;
+                }
+            });
+        }   
+
+   
+
+    </script>
+}
+    <main>        
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <h1>Зарегистрийтесь<br>и станьте частью системы<br> <span class="dark">Гражданский поиск</span></h1>
+            <div class="dataBlock" data-name="Name">
+                <p class="dataLabel">Имя</p>
+                <p class="data" contenteditable="true" defText="Например: Иванов Иван Иванович">Например: Иванов Иван Иванович</p>
+            </div>           
+            <div class="dataBlock" data-name="Phone">
+                <p class="dataLabel">Телефон</p>
+                <p class="data" contenteditable="true" defText="+1 234 56 78">+1 234 56 78</p>
+            </div>
+            <p class="text">При создании аккаунта вы принимаете наши <a href="/agreements">Условия использования</a> и <a href="/agreements">Политику конфиденциальности</a>.</p>
+            <p id="errorText" class="errorText"></p>
+            <br>
+            <div id="submitBtn" class="btn btnBlue" onclick="ajax_registration();">Отправить</div>
+        </div>      
+    </main>

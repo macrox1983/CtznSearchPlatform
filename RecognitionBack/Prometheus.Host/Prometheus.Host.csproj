@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <!--<OutputType>Exe</OutputType>-->
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>    
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Host</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>c:\prometheus_app</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.4.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prometheus.ComponentManager\Prometheus.ComponentManager.csproj" />
+    <ProjectReference Include="..\Prometheus.DAL\Prometheus.DAL.csproj" />
+    <ProjectReference Include="..\Prometheus.DbConfigurator.MSSQL\Prometheus.DbConfigurator.MSSQL.csproj" />
+    <ProjectReference Include="..\Prometheus.DbConfigurator.PostgreSQL\Prometheus.DbConfigurator.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Prometheus.DbContext\Prometheus.DbContext.csproj" />
+    <ProjectReference Include="..\Prometheus.DbMigrations\Prometheus.DbMigrations.csproj" />
+    <ProjectReference Include="..\Prometheus.DbMirgator\Prometheus.DbMirgator.csproj" />
+    <ProjectReference Include="..\Prometheus.Services\Prometheus.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

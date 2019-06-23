@@ -1,0 +1,44 @@
+﻿@using Prometheus.Host.ViewModels
+@model GenerateKeyVm
+@{
+    ViewData["Title"] = "Генерация ключа";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div style="border:1px dashed black; text-align:center; align-self:center">
+        <form asp-action="GenerateComponentKey" asp-controller="Components" asp-anti-forgery="true" method="post">
+            <div>
+                @Html.LabelFor(model => model.ComponentName, "Имя компонента")
+                <div>
+                    @Html.EditorFor(model => model.ComponentName)
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.ApiKey, "Введите ключевое слово")
+                <div>
+                    @Html.EditorFor(model => model.ApiKey)
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Генерировать ключ" class="btn" />
+            </div>
+
+            @*<div class="validation" asp-validation-summary="ModelOnly" />
+            <div>
+                <div class="form-group">
+                    <label asp-for="ApiKey">Введите ключевое слово</label>
+                    <input type="text" asp-for="ApiKey" style="margin:0px,100px,0px,0px;" />
+                    <span asp-validation-for="ApiKey" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ComponentName">Имя компонента</label>
+                    <input type="text" asp-for="ComponentName" style="margin:0px,100px,0px,0px;" />
+                    <span asp-validation-for="ComponentName" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Генерировать ключ" class="btn" />
+                </div>
+            </div>*@
+        </form>
+    </div>

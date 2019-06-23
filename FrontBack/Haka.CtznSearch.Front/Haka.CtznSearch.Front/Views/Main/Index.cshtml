@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Гражданский поиск";
+    ViewData["MetaDescription"] = "";
+    ViewData["MetaKeyWords"] = "";
+}
+
+@section AddInHead
+    {
+
+}
+@section Scripts
+    {
+  
+}
+<main>
+    <div class="container">
+
+        <br>
+        <br>
+
+        <h1>Станьте частью системы<br> <span class="dark">Гражданский поиск</span></h1>
+
+        <br />
+        <div id="submitBtn" class="btn btnBlue" onclick="gs.redirect('/registration');">Авторизоваться</div>
+        <br />
+        <div id="submitBtn" class="btn btnBlue" onclick="gs.redirect('/ticketsList');">Активные поиски</div>
+        <br />
+        <div id="submitBtn" class="btn btnBlue" onclick="gs.redirect('/addTicket');">Создать свой поиск</div>
+        <br /><br /><br /><br /><br /><br />
+    </div>
+</main>

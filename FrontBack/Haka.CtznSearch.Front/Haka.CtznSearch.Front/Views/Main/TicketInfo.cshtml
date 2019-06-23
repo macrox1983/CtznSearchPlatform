@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Создание заявки на поиск";
+    ViewData["MetaDescription"] = "";
+    ViewData["MetaKeyWords"] = "";
+}
+@model Ticket;
+
+@section AddInHead
+    {
+    <link rel="stylesheet" href="/libs/ol/ol.css" type="text/css" />
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="/libs/ol/ol.js"></script>
+    <script src="/js/me_01.js"></script>
+    <script src="/js/meLib_01.js"></script>
+    <script src="/js/osm_01.js"></script>
+}
+@section Scripts
+    {
+    <script>
+        var app = {};
+
+
+        var mapData = { nodeIds: 0, wayIds: 0, nodes: [], ways: [] };
+
+        function showTest(testJson, skin)
+        {
+            let test = JSON.parse(testJson);
+            let center = test.response.center;
+            let shape = test.response.isoline[0].component[0].shape;
+            let nodes = [];
+            shape.forEach(s =>
+            {
+                mapData.nodeIds++;
+                let coordsParse = s.split(',');
+                let coord = [parseFloat(coordsParse[0]), parseFloat(coordsParse[1])];
+                let node = new osm.Node(mapData.nodeIds, coord[1], coord[0]);
+                nodes.push(node);
+            });
+            mapData.wayIds++;
+            let way = new osm.Way(mapData.wayIds);
+            nodes.forEach(n => { way.addNode(n); });
+            way.tags.push(new osm.Tag('gs_build', skin));
+            mapData.ways.push(way);
+            mapData.nodes.addRange(nodes);
+        }
+
+        document.addEventListener('DOMContentLoaded', function ()
+        {
+            app.init = gs.getInitData();
+            app.groupId = 1;
+
+            app.init.lat = parseFloat(app.init.lat);
+            app.init.lon = parseFloat(app.init.lon);
+
+            let zones = app.init.zone.split('|');
+            showTest(zones[2], 'zone1_5');
+            showTest(zones[1], 'zone1');
+            showTest(zones[0], 'zone0_5');
+
+            let coord = [app.init.lon, app.init.lat];
+
+            app.mapEditor = new me.MapEditor('map');
+            app.mapEditor.fill({ nodes: mapData.nodes, ways: mapData.ways });
+            app.mapEditor.setMode(me.Mode_SetPoint);
+            app.mapEditor.setZoom(12);
+            app.mapEditor.setCenter(coord);
+            app.mapEditor.createMapIcon(coord, meLib.MapIconType_Victim);            
+
+            let dropZone = gs.getById('dropImage');
+            gs.dropZoneInit(document, function () { dropZone.style.opacity = 1; }, function () { dropZone.style.opacity = 0.2; }, function (e) { handlerGetFiles(e.dataTransfer.files) });
+
+        });
+    
+
+        let fotoToEdit = [];
+        function handlerGetFiles(files)
+        {
+            fotoToEdit = [];
+            ([...files]).forEach(file => { if (file.type != 'image/jpeg') return; fotoToEdit.push(file); });
+            editorNextFoto();
+        }
+
+        let fotoBlob = null;
+        function editorNextFoto()
+        {
+            if (fotoToEdit.length == 0) { return; }
+            file = fotoToEdit.shift();
+            let data = new FormData();
+            let args = gs.getDataObj();
+
+            data.append('file', file, 'file.jpg');
+            data.append('id', @Model.Id);            
+            data.append('lat', 0);   
+            data.append('lon', 0);
+            gs.getById('faceScanBtn').disable();
+            gs.Net.postFiles('/api/CtznSearchApi/detect', data, function (result)
+            {
+                gs.getById('faceScanBtn').enable();
+                switch (result.error) {
+                    case 0:
+                        gs.getById('errorText0').innerText = "Это человек, которого мы ищем!";
+                        return;
+                    case 1:
+                        gs.getById('errorText0').innerText = "Это не тот человек, которого мы ищем!";
+                        return;
+                    default: gs.errorText(gs.Net.getErrorByCode(result) + '<br/>'); break;
+                }
+            });            
+        }
+
+    </script>
+}
+
+    <main>
+        <input type="hidden" id="zone" value="@Model.Zone" />
+        <input type="hidden" id="lon" value="@Model.Longitude.ToString().Replace(',', '.')" />
+        <input type="hidden" id="lat" value="@Model.Latitude.ToString().Replace(',', '.')" />
+        <div class="container">
+            <div class="addTicket-contentBox">
+                <h1>Потерялся человек</h1>
+                <div class="dataBlock" data-name="Name">
+                    <p class="dataLabel">Имя</p>
+                    <p class="data" defText="Например: Иванов Иван Иванович">@Model.Name</p>
+                </div>
+                <div class="dataBlock" data-name="Ages">
+                    <p class="dataLabel">Возраст (полных лет)</p>
+                    <p class="data" defText="Введите цифрой">@Model.Ages</p>
+                </div>
+                <div class="dataBlock" data-name="Description">
+                    <p class="dataLabel">Особые приметы <br /><i style="font-size:0.8em;">(Рост, вес, цвет глаз, цвет волос, в какую одежду был одет и т.д)</i></p>
+                    <p class="data" defText="Введите значение">@Model.Description</p>
+                </div>
+                <div class="dataBlock" data-name="LastTime">
+                    <p class="dataLabel">Время потери</p>
+                    <p class="data" defText="Пример: 2019-06-12 12:10:21">@Model.Last.ToString()</p>
+                </div>
+            </div>
+            <div class="addTicket-dropBox" style="height:auto;">
+                <img id="fotoHold" src="/images/missings/@(Model.Id).jpg" style="width:40%; margin-left:30%;">
+            </div>
+            <div id="map" class="mapBlock" style="height:300px;"></div>
+            <br />
+            <div id="submitBtn" class="btn btnBlue" onclick="gs.redirect('/search?ticketId=@Model.Id');">Перейти к поискам</div>
+            <br>
+            <p class="center">Проверьте нашу систему. Вы можете загрузить другие фото и она найдет (или нет) на них потерявшегося человека!</p>
+            <input type="file" name="imgFile" id="imgFile" class="hide" multiple accept="image/jpeg" onchange="handlerGetFiles(this.files)" />
+            <div id="faceScanBtn" class="btn btnBlue" onclick="gs.getById('imgFile').click();">Загрузить</div>
+            <p id="errorText0" class="errorText"></p>
+            <br>
+        </div>
+    </main>

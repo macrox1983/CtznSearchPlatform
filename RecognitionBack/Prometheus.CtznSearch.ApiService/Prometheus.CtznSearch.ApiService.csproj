@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Host\Components</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>c:\prometheus_app\Components</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Dlib_models\dlib_face_recognition_resnet_model_v1.dat" />
+    <None Remove="Dlib_models\mmod_human_face_detector.dat" />
+    <None Remove="Dlib_models\shape_predictor_5_face_landmarks.dat" />
+    <None Remove="Dlib_models\shape_predictor_68_face_landmarks.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dlib_models\dlib_face_recognition_resnet_model_v1.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dlib_models\shape_predictor_68_face_landmarks.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="FaceRecognitionDotNet" Version="1.2.3.12" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prometheus.DbConfigurator.MSSQL\Prometheus.DbConfigurator.MSSQL.csproj" />
+    <ProjectReference Include="..\Prometheus.DbConfigurator.MySQL\Prometheus.DbConfigurator.MySQL.csproj" />
+    <ProjectReference Include="..\Prometheus.DbConfigurator.PostgreSQL\Prometheus.DbConfigurator.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Prometheus.Infrastructure.Component\Prometheus.Infrastructure.Component.csproj" />
+    <ProjectReference Include="..\Prometheus.Model\Prometheus.Model.csproj" />
+    <ProjectReference Include="..\Prometheus.Presentation\Prometheus.Presentation.csproj" />
+    <ProjectReference Include="..\Prometheus.Services\Prometheus.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Dlib_models\mmod_human_face_detector.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Dlib_models\shape_predictor_5_face_landmarks.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

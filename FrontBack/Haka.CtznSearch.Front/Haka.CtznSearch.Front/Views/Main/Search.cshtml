@@ -1,0 +1,345 @@
+﻿@{
+    ViewData["Title"] = "Гражданский поиск";
+    ViewData["MetaDescription"] = "";
+    ViewData["MetaKeyWords"] = "";
+}
+
+@section AddInHead
+    {
+<link rel="stylesheet" href="/libs/ol/ol.css" type="text/css" />
+<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+<script src="/libs/ol/ol.js"></script>
+<script src="/js/me_01.js"></script>
+<script src="/js/meLib_01.js"></script>
+<script src="/js/osm_01.js"></script>
+}
+@section Scripts
+    {
+<script>
+    var app = {};
+
+    var mapData = { nodeIds: 0, wayIds: 0, nodes: [], ways: [] };
+
+
+    function showTest(testJson, skin)
+    {
+        let test = JSON.parse(testJson);
+        let center = test.response.center;
+        let shape = test.response.isoline[0].component[0].shape;
+        let nodes = [];
+        shape.forEach(s =>
+        {
+            mapData.nodeIds++;
+            let coordsParse = s.split(',');
+            let coord = [parseFloat(coordsParse[0]), parseFloat(coordsParse[1])];
+            let node = new osm.Node(mapData.nodeIds, coord[1], coord[0]);
+            nodes.push(node);
+        });
+        mapData.wayIds++;
+        let way = new osm.Way(mapData.wayIds);
+        nodes.forEach(n => { way.addNode(n); });
+        way.tags.push(new osm.Tag('gs_build', skin));
+        mapData.ways.push(way);
+        mapData.nodes.addRange(nodes);
+    }
+
+    function createCameraMatch(id, coords)
+    {
+        let cameraMatch = { id: id, icon: app.mapEditor.createMapIcon(coords, meLib.MapIconType_CameraMatch) };
+        app.camerasMatch[id] = cameraMatch;
+    }
+    function createHunter(hunterid, coords)
+    {
+        if (app.hunters[hunterid]) { updateHunter(hunterid, coords); return; }
+        let icon = meLib.MapIconType_Hunter;
+        if (hunterid == app.init.uid) icon = meLib.MapIconType_YouAreHere;
+        let hunter = { id: hunterid, icon: app.mapEditor.createMapIcon(coords, icon), nodes: [], way: null };
+        app.hunters[hunterid] = hunter;
+        let node = app.mapEditor.createNode(coords);
+        hunter.nodes.push(node);
+    }
+
+    function updateHunter(userid, coords)
+    {
+        let hunter = app.hunters[userid];
+        if (!hunter) {
+            createHunter(userid, coords);
+            return;
+        }
+        hunter.icon.item.setCoordinate(coords);
+        let node = app.mapEditor.createNode(coords);
+        hunter.nodes.push(node);
+
+        hunter.way = app.mapEditor.createWayByNodes(hunter.nodes, hunter.way);
+        hunter.way.changeTag("gs_path", "trace");
+    }
+
+    document.addEventListener('DOMContentLoaded', function ()
+    {
+        
+        
+
+        //   gs.FocusVector.setVectorByIds(['search', 'searchBtn']);
+
+
+        app.init = gs.getInitData();        
+        app.init.lat = parseFloat(app.init.lat);
+        app.init.lon = parseFloat(app.init.lon);
+        app.coord = [app.init.lon, app.init.lat];
+        app.groupId = 1;
+        app.hunters = [];
+        app.camerasMatch = [];
+        app.groupId = 1;
+
+        let zones = app.init.zone.split('|');
+        showTest(zones[2], 'zone1_5');
+        showTest(zones[1], 'zone1');
+        showTest(zones[0], 'zone0_5');
+
+
+        mapData.nodeIds++;
+        let victumNode = new osm.Node(mapData.nodeIds, app.init.lon, app.init.lat);
+        victumNode.tags.push(new osm.Tag('gs_icon', 'victim'));
+        mapData.nodes.push(victumNode);
+
+
+
+
+        app.mapEditor = new me.MapEditor('map');
+        app.mapEditor.fill({ nodes: mapData.nodes, ways: mapData.ways });
+        //app.mapEditor.setMapGroupId(app.groupId);
+        app.mapEditor.setMode(me.Mode_View);
+        app.mapEditor.setZoom(12);
+        app.mapEditor.setCenter(app.coord);
+        //    app.mapEditor.setYouAreHere(app.coord);
+
+        app.mapEditor.createMapIcon(app.coord, meLib.MapIconType_Victim);
+
+        app.mapEditor.addEventListener(me.EventSelectedChanged, handleEventSelectedChanged);
+        app.mapEditor.addEventListener(me.EventYouAreHereChanged, handlerChangedYouAreHere);
+
+        setTimeout(tickGPS, 5000);       
+        setTimeout(updateHuntersTick, 5000);               
+
+        createCameraMatch(1, [39.220647, 45.034664]);
+
+        app.mapEditor.setHeight('70hv');
+
+        /*
+        let yah = [init.initLongitude, init.initLatitude]
+        config = { 'mapElementId': 'map', 'initZoom': init.initZoom, 'initCoordinate': yah };
+
+        gs.OLMap.initialization(config);
+        gs.OLMap.setYouAreHere(gs.OLMap.transformCoordinatesForOL(yah));
+        gs.OLMap.addEventListener(gs.OLMap.EventSelectedPoint, handlerSelectedPoint);
+        gs.OLMap.addEventListener(gs.OLMap.EventChangedYouAreHere, handlerChangedYouAreHere);
+        */
+
+
+        /*
+                    JSON.parse(init.queryJSON).forEach(function (point)
+                    {
+                        app.mapEditor.addPoint(point);
+                        //   app.mapEditor.showPoint(point.Id);
+                    });
+
+                    let idValid = false;
+                    let urlArgs = gs.getUrlArgs();
+                    urlArgs.id = init.queryId;*/
+        //   gs.changeUrl(window.location.pathname + "?" + gs.createUrlArgs(urlArgs));
+        //  recalculateDistance();
+
+
+    });
+
+
+    
+    
+
+    let lastHunterId = 0;
+    function updateHuntersTick()
+    {
+        setTimeout(updateHuntersTick, 10000);
+        gs.Net.post('/ajaxapi/GetSearchPositions?ticketId=' + app.init.ticketId + '&lastId=' + lastHunterId, {},  function (result)
+        {
+            switch (result.error) {
+                case 0:
+                    let data = JSON.parse(result.object);
+                    data.forEach(d =>
+                    {
+                        let mId = parseInt(d.Id);
+                        if (mId > lastHunterId) lastHunterId = mId;
+                        let id = parseInt(d.UserId);
+                        let lon = parseFloat(d.Longitude);
+                        let lat = parseFloat(d.Latitude);                        
+
+                        updateHunter(id, [lon, lat]);
+                    })                    
+                    break;
+                default: gs.errorText(gs.Net.getErrorByCode(result) + '<br/>'); break;
+            }
+        });
+        
+
+    }
+
+    function tickGPS()
+    {
+        setTimeout(tickGPS, 10000);
+
+        if (navigator.geolocation) {
+            // Передаем две функции
+            navigator.geolocation.getCurrentPosition(
+                geolocationSuccess, geolocationFailure);
+
+            // Выводим результат
+            //result.innerHTML = "Поиск начался";
+        }
+        else {
+            // Выводим результат
+            //result.innerHTML = "Ваш браузер не поддерживает геолокацию";
+        }
+
+    }
+
+    function geolocationSuccess(position)
+    {
+        data = {};
+        data.lat = position.coords.latitude;
+        data.lon = position.coords.longitude;
+        data.ticketId = app.init.ticketId;
+        gs.Net.post('/ajaxapi/SearchUpdatePosition', data, function (result)
+        {
+       //     btnSubmit.enable();
+            return;
+            /*switch (result.error) {
+                case 0:
+                    gs.redirect("/TicketsList/");
+                    break;
+                default: gs.errorText(gs.Net.getErrorByCode(result) + '<br/>'); break;
+            }*/
+        });
+        /*
+        var result = getById('errorText');
+        result.innerHTML = "Последний раз вас засекали здесь: " +
+            position.coords.latitude + ", " + position.coords.longitude;
+        map.youAreHere = gs.OLMap.transformCoordinatesForOL([position.coords.longitude, position.coords.latitude])
+        map.youAreHereIcon.getGeometry().setCoordinates(map.youAreHere);
+        handlerChangedYouAreHere();*/
+    }
+
+    function geolocationFailure(positionError)
+    {
+        //var result = getById('errorText');
+        //result.innerHTML = "Ошибка геолокации";
+        //if (positionError.PERMISSION_DENIED) result.innerHTML = "Вы запретили сайту определять ваше местоположение.";
+    }
+
+    function handleEventSelectedChanged(e)
+    {
+        let list = e.detail;
+        if (list.length === 0) return;
+        let item = list.first();
+        app.selectedItem = item;
+        switch (item.getType()) {
+            case meLib.Type_SearchPoint:
+                let point = item.getPoint();
+                gs.show('backToSearchResultBtn');
+                gs.hide('searchResultBlock');
+                gs.hide('searchBlock');
+                window.scrollTo(0, 0);
+                //let map = gs.getById('map'); map.scrollTo();
+                app.mapEditor.setHeight(Math.round(document.documentElement.clientHeight * 0.5) + "px")
+                gs.setHtml('#pointPreview', gs.htmlById('searchResult' + point.Id));
+                gs.show('pointPreview');
+                break;
+        }
+    }
+
+    function handlerChangedYouAreHere(e)
+    {
+        if (app.recalculateDistanceTimerId != 0) return;
+        app.recalculateDistanceTimerId = setTimeout('recalculateDistance()', 1000);
+    }
+    function recalculateDistance()
+    {
+        let coordinate = app.mapEditor.getYouAreHere();
+        let urlArgs = gs.getUrlArgs();
+        urlArgs.loc = osm.getUrlArg(coordinate, app.mapEditor.getZoom());
+        gs.changeUrl(window.location.pathname + "?" + gs.createUrlArgs(urlArgs));
+        let ps = app.mapEditor.getSearchPoints();
+        app.mapEditor.getSearchPoints().forEach(sp =>
+        {
+            let distantion = osm.getDistance(coordinate, sp.coordinateGS());
+            gs.setHtml(`#distantion${sp.getPoint().Id}`, `(${distantion.toString()}м)`);
+        });
+        app.recalculateDistanceTimerId = 0;
+    }
+    function mapViewOnMe()
+    {
+        let coordinate = app.mapEditor.getYouAreHere();
+        app.mapEditor.setCenter(coordinate);
+        /*
+        var result = gs.getById('errorText');
+        if (navigator.geolocation) {
+            // Передаем две функции
+            navigator.geolocation.getCurrentPosition(
+                geolocationSuccess, geolocationFailure);
+
+            // Выводим результат
+            result.innerHTML = "Поиск начался";
+        }
+        else {
+            // Выводим результат
+            result.innerHTML = "Ваш браузер не поддерживает геолокацию";
+        }
+        */
+
+    }
+   
+
+    function mapViewOnPoint(pointId, saveScroll = true)
+    {
+        let searchPoint = app.mapEditor.getSearchPoint(pointId);
+        if (!searchPoint) return;
+        if (app.selectedItem != searchPoint)
+            if (saveScroll)
+                app.lastSeachViewYOffset = window.pageYOffset;
+        app.mapEditor.selectSearchPoint(pointId);
+        app.mapEditor.setCenter(searchPoint.coordinateGS());
+    }
+    function backToSearchResult()
+    {
+        gs.setHtml('#pointPreview', '');
+        gs.hide('pointPreview');
+        gs.hide('backToSearchResultBtn');
+        gs.show('searchResultBlock');
+        gs.show('searchBlock');
+        app.mapEditor.unselectAll();
+        app.mapEditor.setHeight("");
+        window.scrollTo(0, app.lastSeachViewYOffset);
+        app.lastSeachViewYOffset = 0;
+    }
+
+    function ajaxSearch()
+    {
+        let data = { 'offset': 0, "loc": osm.getUrlArg(app.mapEditor.getYouAreHere(), app.mapEditor.getZoom()) };
+        gs.Validator.clearValidSession();
+        data.str = gs.Validator.validValue("search");
+        gs.errorText(gs.Validator.getErrorText());
+        if (!gs.Validator.getValid()) return;
+        gs.redirect('/search?' + gs.createUrlArgs(data));
+    }
+
+</script>
+}
+<main>
+    
+    <input type="hidden" id="uid" value="@ViewBag.uid" />
+    <input type="hidden" id="zone" value="@Model.Zone" />
+    <input type="hidden" id="lon" value="@Model.Longitude.ToString().Replace(',', '.')" />
+    <input type="hidden" id="lat" value="@Model.Latitude.ToString().Replace(',', '.')" />
+    <input type="hidden" id="ticketId" value="@Model.Id" />
+    <div id="map" class="mapBlock"></div>
+</main>

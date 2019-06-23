@@ -1,0 +1,5 @@
+﻿{
+  "DirectoryBackups": "data/backups",
+  "DirectoryTrackers": "data/trackers",
+  "DateTimeFullFormatString": "yyyy.MM.dd@HH-mm-ss-fffffff#zz"
+}
